@@ -24,9 +24,16 @@
                 </div>
             </div>
         </div>
-    <div class="game-area" style="position:relative;">
+    <div class="game-area">
           <div id="overlay">
-              <button id="start-btn">Start</button>
+              <div class="difficulty-container">
+                  <h1 class="difficulty-title">Choose Difficulty to Start</h1>
+                  <div class="difficulty-row">
+                      <button id="easy-btn" class="difficulty-btn easy">Easy</button>
+                      <button id="normal-btn" class="difficulty-btn normal">Normal</button>
+                      <button id="hard-btn" class="difficulty-btn hard">Hard</button>
+                  </div>
+              </div>
           </div>
           <div id="gameover-overlay" class="hidden">
               <div class="gameover-card">

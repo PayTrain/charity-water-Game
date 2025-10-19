@@ -87,26 +87,44 @@ let recentDropPositions = [];
 const MIN_DROP_DISTANCE = 80; // Minimum distance in px between drops
 const RECENT_DROP_TIME = 1000; // ms to keep positions
 
-// Wait for button click to start the game
-document.getElementById("start-btn").addEventListener("click", startGame);
+// Difficulty configuration
+const difficulties = {
+  easy: { spawnInterval: 1200, fallDuration: 5000 },   // slower spawn, slower fall
+  normal: { spawnInterval: 1000, fallDuration: 4000 }, // original baseline
+  hard: { spawnInterval: 650, fallDuration: 3000 }     // faster spawn, faster fall
+};
+
+let currentDifficulty = 'normal';
+
+// Wire difficulty buttons
+const easyBtn = document.getElementById('easy-btn');
+const normalBtn = document.getElementById('normal-btn');
+const hardBtn = document.getElementById('hard-btn');
+
+if (easyBtn && normalBtn && hardBtn) {
+  easyBtn.addEventListener('click', () => startGame('easy'));
+  normalBtn.addEventListener('click', () => startGame('normal'));
+  hardBtn.addEventListener('click', () => startGame('hard'));
+}
 
 // Hide overlay when game starts
 function hideOverlay() {
   document.getElementById("overlay").classList.add("hidden");
 }
 
-function startGame() {
+function startGame(difficulty = 'normal') {
   // Prevent multiple games from running at once
   if (gameRunning) return;
 
   gameRunning = true;
+  currentDifficulty = difficulty in difficulties ? difficulty : 'normal';
   hideOverlay();
 
   // Start smooth bucket movement
   startBucketMovement();
 
-  // Create new drops every second (1000 milliseconds)
-  dropMaker = setInterval(createDrop, 1000);
+  // Create new drops based on difficulty spawn rate
+  dropMaker = setInterval(createDrop, difficulties[currentDifficulty].spawnInterval);
 
   // Start countdown timer
   let timeLeft = 30;
@@ -157,6 +175,11 @@ function createDrop() {
   // Create a wrapper div for animation and positioning
   const drop = document.createElement("div");
   drop.className = "drop-wrapper" + (dropType === 1 ? " banana-drop" : "");
+  // Set animation duration based on difficulty
+  const fallMs = difficulties[currentDifficulty].fallDuration;
+  drop.style.animationDuration = `${fallMs}ms`;
+  // Ensure wrapper knows the drop size for accurate fall distance in CSS
+  // We'll set this after computing dropSize below; placeholder for now
   // Responsive drop size: match CSS media query
   let dropSize;
   if (window.innerWidth <= 576) {
@@ -164,6 +187,7 @@ function createDrop() {
   } else {
     dropSize = dropType === 1 ? 90 : 60;
   }
+  drop.style.setProperty('--drop-size', dropSize + 'px');
   // Position the drop randomly across the game width, but not too close to recent drops
   const gameWidth = gameContainer.offsetWidth;
   let xPosition;
