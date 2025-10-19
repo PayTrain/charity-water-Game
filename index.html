@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Drop Game</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-wrapper">
+        <div class="branding-container">
+            <!-- Responsive branding row: Bootstrap grid for large screens -->
+            <div class="branding-row">
+                <div class="branding-logo">
+                    <a href="https://www.charitywater.org/?_gl=1*ktoxd5*_up*MQ..*_gs*MQ..&gclid=CjwKCAjwxrLHBhA2EiwAu9EdM2e1bBulFyWwp3T54csxfJO9Bq_0SEZuFQ3SByR9XB8SrNbU472bFBoCuVkQAvD_BwE&gbraid=0AAAAADNj5D8AC8OAZcgKYdBq9M9vTt7ir" target="_blank" rel="noopener noreferrer">
+                        <img src="img/logo.svg" alt="Water Drop Logo" class="logo">
+                    </a>
+                </div>
+                <div class="branding-title">
+                    <img src="img/gameTitle.svg" alt="Drop Quest" class="game-title">
+                </div>
+            </div>
+        </div>
+    <div class="game-area" style="position:relative;">
+          <div id="overlay">
+              <button id="start-btn">Start</button>
+          </div>
+          <div id="gameover-overlay" class="hidden">
+              <div class="gameover-card">
+                  <img src="img/Stars.svg" alt="Stars" class="gameover-stars">
+                  <h2 class="gameover-header">Nice Run!</h2>
+                  <div class="gameover-subtext">You collected <span id="gameover-score" class="gameover-score">0</span> clean drops!</div>
+                  <div class="gameover-subtext">Every drop brings someone closer to clean water, and you’ve made a splash! Now see how you can help for real.</div>
+                  <div class="gameover-btn-row">
+                      <button class="gameover-btn play-again-btn">
+                          <i class="bi bi-arrow-counterclockwise"></i>
+                          <span>Play Again</span>
+                      </button>
+                      <a class="gameover-btn learn-more-btn" href="https://www.charitywater.org/donate/the-spring?_gl=1*1yw9r34*_up*MQ..*_gs*MQ..&gclid=Cj0KCQjw3aLHBhDTARIsAIRij58OBUQyA6IKXHXPdvawPes3JwoeKpItia-LDdF2123WJUwhiwcoGHMaAqABEALw_wcB&gbraid=0AAAAADNj5D-vg04NJPek0512xrkr2jRZj" target="_blank" rel="noopener noreferrer">
+                          <img src="img/waterCanTransparent.svg" alt="Learn More" class="learnmore-icon">
+                          <span>Learn More</span>
+                      </a>
+                  </div>
+              </div>
+          </div>
+          <div class="score-panel">
+              <div class="counter lives-counter">
+                  <span><img src="img/Heart.svg" alt="Heart" class="icon-img"></span>
+                  <span class="counter-value" id="lives">3</span>
+              </div>
+              <div class="timer"><span id="time">30</span>s</div>
+              <div class="score-btn-wrapper">
+                  <div class="counter score-counter">
+                      <span><img src="img/CleanDrop.svg" alt="Clean Drop" class="icon-img"></span>
+                      <span class="counter-value" id="score">0</span>
+                  </div>
+              </div>
+          </div>
+          <div id="game-container">
+              <img id="bucket" src="img/Bucket.svg" alt="Bucket" style="display:block;">
+          </div>
+      </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
