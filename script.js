@@ -148,14 +148,17 @@ function startGame(difficulty = 'normal') {
       drops.forEach(drop => {
         drop.style.animationPlayState = 'paused';
       });
-        // Show game over overlay
-        document.getElementById('gameover-overlay').classList.remove('hidden');
-        // Set the score in the game over card
-        const scoreElem = document.getElementById('score');
-        const gameoverScoreElem = document.getElementById('gameover-score');
-        if (scoreElem && gameoverScoreElem) {
-          gameoverScoreElem.textContent = scoreElem.textContent;
-        }
+  // Play success fanfare sound
+  const fanfare = new Audio('mp3/success-fanfare-trumpets.mp3');
+  fanfare.play();
+      // Show game over overlay
+      document.getElementById('gameover-overlay').classList.remove('hidden');
+      // Set the score in the game over card
+      const scoreElem = document.getElementById('score');
+      const gameoverScoreElem = document.getElementById('gameover-score');
+      if (scoreElem && gameoverScoreElem) {
+        gameoverScoreElem.textContent = scoreElem.textContent;
+      }
       // Optionally, you can add game over logic here
     }
   }, 1000);
@@ -260,7 +263,13 @@ function createDrop() {
         // Clear drop: increase score
         const scoreElem = document.getElementById("score");
         scoreElem.textContent = parseInt(scoreElem.textContent) + 1;
+        // Play water-drop sound effect
+        const audio = new Audio('mp3/water-drop.mp3');
+        audio.play();
       } else {
+        // Bad drop: play wrong sound
+        const audio = new Audio('mp3/wrong.mp3');
+        audio.play();
         // Bad drop: decrease lives, but not below zero
         const livesElem = document.getElementById("lives");
         const currentLives = parseInt(livesElem.textContent);
@@ -279,6 +288,9 @@ function createDrop() {
             drops.forEach(drop => {
               drop.style.animationPlayState = 'paused';
             });
+            // Play success fanfare sound
+            const fanfare = new Audio('mp3/success-fanfare-trumpets.mp3');
+            fanfare.play();
             // Set the score in the game over card
             const scoreElem = document.getElementById('score');
             const gameoverScoreElem = document.getElementById('gameover-score');
