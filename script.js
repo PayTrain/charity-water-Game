@@ -174,15 +174,30 @@ function startGame(difficulty = 'normal') {
 }
 
 function createDrop() {
-  // Make good drops much more likely than bad drops
-  // Example: 70% good, 7.5% for each bad drop
+  // Adjust drop spawn chances based on difficulty
   const rand = Math.random();
   let dropType;
-  if (rand < 0.7) {
-    dropType = 0; // good drop
+  if (currentDifficulty === 'hard') {
+    // 60% clean, 10% each bad drop
+    if (rand < 0.6) {
+      dropType = 0; // clean drop
+    } else if (rand < 0.7) {
+      dropType = 1; // banana
+    } else if (rand < 0.8) {
+      dropType = 2; // dirty drop
+    } else if (rand < 0.9) {
+      dropType = 3; // fly
+    } else {
+      dropType = 4; // soda can
+    }
   } else {
-    // Randomly pick one of the 4 dirty drop types
-    dropType = 1 + Math.floor(Math.random() * 4); // 1, 2, 3, or 4
+    // 70% clean, 7.5% each bad drop (original logic)
+    if (rand < 0.7) {
+      dropType = 0; // good drop
+    } else {
+      // Randomly pick one of the 4 dirty drop types
+      dropType = 1 + Math.floor(Math.random() * 4); // 1, 2, 3, or 4
+    }
   }
   // Create a wrapper div for animation and positioning
   const drop = document.createElement("div");
