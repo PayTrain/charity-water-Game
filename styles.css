@@ -279,7 +279,8 @@ body {
     border-radius: 0.75rem;
     font-family: 'Proxima Nova', 'Avenir', Arial, sans-serif;
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 700; /* Thicker font for game over buttons */
+    text-shadow:  0 0 2px #000; /* Dark shadow for button text */
     cursor: pointer;
     box-shadow: 0 0 12px 0 #FFFAF0;
     transition: box-shadow 0.2s, background 0.2s;
@@ -322,7 +323,7 @@ body {
 .gameover-header {
     color: #003366;
     font-family: 'Proxima Nova', 'Avenir', Arial, sans-serif;
-    font-weight: 400;
+    font-weight: 800; /* Thicker header for game over */
     font-size: 1.75rem;
     margin-top: 2.5rem;
     margin-bottom: 1rem;
@@ -479,8 +480,9 @@ body {
 }
 .difficulty-btn.easy {
     background: linear-gradient(90deg, #159A48 0%, #E9FFE9 78%);
-    color: #08340B;
+    color: #07400E; /* Even darker green */
     border-color: #159A48;
+    text-shadow: 0 0 1px #000;
 }
 .difficulty-btn.easy:hover {
     background: linear-gradient(90deg, #159A48 0%, #FFFFFF 100%);
@@ -488,8 +490,9 @@ body {
 }
 .difficulty-btn.normal {
     background: linear-gradient(90deg, #FFC908 0%, #FFF7E0 78%);
-    color: #1a1a1a;
+    color: #7A5A00; /* Darker yellow/brown */
     border-color: #FFC908;
+    text-shadow: 0 0 1px #000;
 }
 .difficulty-btn.normal:hover {
     background: linear-gradient(90deg, #FFC908 0%, #FFFFFF 100%);
@@ -497,8 +500,9 @@ body {
 }
 .difficulty-btn.hard {
     background: linear-gradient(90deg, #F5402C 0%, #FFE6E6 78%);
-    color: #3A0A0A;
+    color: #6D1717; /* Darker red */
     border-color: #F5402C;
+    text-shadow: 0 0 1px #000;
 }
 .difficulty-btn.hard:hover {
     background: linear-gradient(90deg, #F5402C 0%, #FFFFFF 100%);
@@ -736,6 +740,7 @@ body {
     text-decoration: none;
     transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    text-shadow: 0 0 1px #000;
 }
 
 .footer-link:hover {
