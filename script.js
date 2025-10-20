@@ -271,10 +271,33 @@ function createDrop() {
       if (dropType === 0) {
         // Clear drop: increase score
         const scoreElem = document.getElementById("score");
-        scoreElem.textContent = parseInt(scoreElem.textContent) + 1;
+        let newScore = parseInt(scoreElem.textContent) + 1;
+        scoreElem.textContent = newScore;
         // Play water-drop sound effect
         preloadedSounds.waterDrop.currentTime = 0;
         preloadedSounds.waterDrop.play();
+        // Milestone messages
+        const milestoneMessages = [
+          "Keep it flowing!",
+          "Ripples rising!",
+          "You’re making waves!",
+          "Buckets of impact!",
+          "You’re a water hero!"
+        ];
+        const milestoneScores = [5, 10, 20, 30, 50];
+        const milestoneElem = document.getElementById('milestone-message');
+        if (milestoneElem) {
+          for (let i = 0; i < milestoneScores.length; i++) {
+            if (newScore === milestoneScores[i]) {
+              milestoneElem.textContent = milestoneMessages[i];
+              milestoneElem.classList.remove('hidden');
+              setTimeout(() => {
+                milestoneElem.classList.add('hidden');
+              }, 2000);
+              break;
+            }
+          }
+        }
       } else {
         // Bad drop: play wrong sound
         preloadedSounds.wrong.currentTime = 0;
