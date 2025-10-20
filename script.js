@@ -1,3 +1,13 @@
+// Preload sound effects for instant playback
+const preloadedSounds = {
+  waterDrop: new Audio('mp3/water-drop.mp3'),
+  wrong: new Audio('mp3/wrong.mp3'),
+  fanfare: new Audio('mp3/success-fanfare-trumpets.mp3')
+};
+preloadedSounds.waterDrop.load();
+preloadedSounds.wrong.load();
+preloadedSounds.fanfare.load();
+
 // Play Again button functionality
 document.querySelector('.play-again-btn').addEventListener('click', function() {
   // Hide gameover overlay
@@ -148,12 +158,11 @@ function startGame(difficulty = 'normal') {
       drops.forEach(drop => {
         drop.style.animationPlayState = 'paused';
       });
-  // Play success fanfare sound
-  const fanfare = new Audio('mp3/success-fanfare-trumpets.mp3');
-  fanfare.play();
+      // Play success fanfare sound
+      preloadedSounds.fanfare.currentTime = 0;
+      preloadedSounds.fanfare.play();
       // Show game over overlay
       document.getElementById('gameover-overlay').classList.remove('hidden');
-      // Set the score in the game over card
       const scoreElem = document.getElementById('score');
       const gameoverScoreElem = document.getElementById('gameover-score');
       if (scoreElem && gameoverScoreElem) {
@@ -264,12 +273,12 @@ function createDrop() {
         const scoreElem = document.getElementById("score");
         scoreElem.textContent = parseInt(scoreElem.textContent) + 1;
         // Play water-drop sound effect
-        const audio = new Audio('mp3/water-drop.mp3');
-        audio.play();
+        preloadedSounds.waterDrop.currentTime = 0;
+        preloadedSounds.waterDrop.play();
       } else {
         // Bad drop: play wrong sound
-        const audio = new Audio('mp3/wrong.mp3');
-        audio.play();
+        preloadedSounds.wrong.currentTime = 0;
+        preloadedSounds.wrong.play();
         // Bad drop: decrease lives, but not below zero
         const livesElem = document.getElementById("lives");
         const currentLives = parseInt(livesElem.textContent);
@@ -289,8 +298,8 @@ function createDrop() {
               drop.style.animationPlayState = 'paused';
             });
             // Play success fanfare sound
-            const fanfare = new Audio('mp3/success-fanfare-trumpets.mp3');
-            fanfare.play();
+            preloadedSounds.fanfare.currentTime = 0;
+            preloadedSounds.fanfare.play();
             // Set the score in the game over card
             const scoreElem = document.getElementById('score');
             const gameoverScoreElem = document.getElementById('gameover-score');
